@@ -5,3 +5,9 @@ Feature: Login functionality
     When the user enters "standard_user" and "secret_sauce"
     And clicks the login button
     Then the user should be redirected to the products page
+
+  Scenario: Successful logged in
+    Given the user is on the login page
+    When the user enters "standard_user" and "secret_sauce"
+    And clicks the login button
+    Then the user should be redirected to the products page

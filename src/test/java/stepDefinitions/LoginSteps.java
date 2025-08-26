@@ -14,6 +14,7 @@ public class LoginSteps {
     WebDriver driver;
 
     @Given("the user is on the login page")
+    @Given("Successful logged in")
     public void the_user_is_on_the_login_page() {
 //        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         String os = System.getProperty("os.name").toLowerCase();
