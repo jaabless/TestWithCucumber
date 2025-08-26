@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.time.Duration;
 
 import static org.junit.Assert.*;
 
@@ -13,9 +16,19 @@ public class LoginSteps {
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
 //        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
+        }
+
+        ChromeOptions options = new ChromeOptions();
+        if (!os.contains("win")) {
+            options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
+        }
+
+        driver = new ChromeDriver(options);
         driver.get("https://www.saucedemo.com/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @When("the user enters {string} and {string}")
